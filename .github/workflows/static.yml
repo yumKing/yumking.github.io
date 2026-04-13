@@ -40,12 +40,12 @@ jobs:
           pip install -r requirements.txt
           # 如果没有 requirements.txt，可替换为：
           # pip install sphinx sphinx_rtd_theme
-      - name: Verify source directory  # 👈 新增调试步骤
-        run: |
-          echo "🔍 当前工作目录: $(pwd)"
-          echo "📁 目录结构:"
-          ls -la
-          ls -la source/ || echo "⚠️ source/ 目录不存在！"
+      # - name: Verify source directory  # 👈 新增调试步骤
+      #   run: |
+      #     echo "🔍 当前工作目录: $(pwd)"
+      #     echo "📁 目录结构:"
+      #     ls -la
+      #     ls -la source/ || echo "⚠️ source/ 目录不存在！"
 
       - name: Build HTML
         run: |
