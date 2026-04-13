@@ -36,12 +36,12 @@ myst_substitutions = {
 
 # 主题配置
 html_theme = 'furo'
-html_logo = '_static/logo-light.png'  # 默认 Logo
-html_favicon = '_static/favicon.png'
+html_logo = '_static/logo-light.svg'  # 默认 Logo
+html_favicon = '_static/favicon.svg'
 
 html_theme_options = {
-    'light_logo': 'logo-light.png',  # 可选
-    'dark_logo': 'logo-dark.png',    # 可选
+    'light_logo': 'logo-light.svg',  # 可选
+    'dark_logo': 'logo-dark.svg',    # 可选
     'sidebar_hide_name': False,      # 显示项目名
     'footer_icons': [                # 底部社交图标
         {'name': 'GitHub', 'url': 'https://github.com/yumKing', 'html': '', 'class': 'fa-brands fa-github'},
