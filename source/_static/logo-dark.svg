@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- 书本封面 -->
+  <path d="M40 140 Q100 145 160 140 L160 150 Q100 155 40 150 Z" 
+        fill="#34d399" opacity="0.9"/>
+  
+  <!-- 左侧页面 -->
+  <path d="M45 140 Q45 120 55 115 Q75 105 100 105 L100 145 Q75 145 55 140 Q45 140 45 140 Z" 
+        fill="#1f2937" stroke="#4b5563" stroke-width="1.5"/>
+  <path d="M47 135 Q50 125 57 122" fill="none" stroke="#4b5563" stroke-width="1"/>
+  <path d="M50 142 Q55 135 62 132" fill="none" stroke="#4b5563" stroke-width="1"/>
+  
+  <!-- 右侧页面 -->
+  <path d="M100 105 Q125 105 145 115 Q155 120 155 140 Q155 140 145 140 Q125 145 100 145 Z" 
+        fill="#1f2937" stroke="#4b5563" stroke-width="1.5"/>
+  <path d="M153 135 Q150 125 143 122" fill="none" stroke="#4b5563" stroke-width="1"/>
+  <path d="M150 142 Q145 135 138 132" fill="none" stroke="#4b5563" stroke-width="1"/>
+  
+  <!-- 中间页面堆叠 -->
+  <path d="M50 138 Q75 142 100 142 Q125 142 150 138" fill="none" stroke="#4b5563" stroke-width="1"/>
+  <path d="M52 135 Q75 139 100 139 Q125 139 148 135" fill="none" stroke="#4b5563" stroke-width="1"/>
+  
+  <!-- 植物茎干 -->
+  <path d="M100 140 Q100 125 98 115 Q96 105 95 100" 
+        fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- 主叶片1 -->
+  <path d="M95 115 Q85 110 80 112 Q78 113 80 115 Q85 120 95 118" 
+        fill="#6ee7b7" stroke="#34d399" stroke-width="1"/>
+  <path d="M82 113 Q88 115 93 116" fill="none" stroke="#34d399" stroke-width="0.5"/>
+  
+  <!-- 主叶片2 -->
+  <path d="M98 105 Q105 95 110 92 Q113 90 113 93 Q113 98 105 108" 
+        fill="#6ee7b7" stroke="#34d399" stroke-width="1"/>
+  <path d="M100 106 Q105 100 108 95" fill="none" stroke="#34d399" stroke-width="0.5"/>
+  
+  <!-- 主叶片3 -->
+  <path d="M97 110 Q105 108 108 110 Q110 112 108 114 Q105 116 97 113" 
+        fill="#a7f3d0" stroke="#34d399" stroke-width="1"/>
+  <path d="M99 111 Q103 112 106 112" fill="none" stroke="#34d399" stroke-width="0.5"/>
+  
+  <!-- 飘浮叶片 -->
+  <path d="M75 108 Q70 106 68 107 Q67 108 69 109 Q72 111 77 110" 
+        fill="#a7f3d0" stroke="#34d399" stroke-width="0.8" opacity="0.8"/>
+  <path d="M125 105 Q130 103 132 104 Q133 105 131 107 Q128 109 123 108" 
+        fill="#a7f3d0" stroke="#34d399" stroke-width="0.8" opacity="0.8"/>
+</svg>
