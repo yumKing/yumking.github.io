@@ -1,5 +1,7 @@
-# 欢迎来到项目文档
-欢迎查阅 **[知识库]** 的官方文档。本文档提供安装指南、使用教程、API 参考及最佳实践，帮助您快速上手并高效使用本项目。
+(home-label)=
+# yumKing笔记本
+记录日常笔记，问题、思考等
+
 
 ## 文档导航
 
@@ -10,6 +12,7 @@
 快速入门 <getting_started/index>
 用户指南 <user_guide/overview>
 验证测试 <verify_test/index>
+agent(人机分层协作机制) <agents/人机分层协作机制>
 ```
 
 ## 索引与工具

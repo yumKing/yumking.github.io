@@ -2,6 +2,8 @@
 html_baseurl = "https://yumking.github.io/"
 html_use_relative_urls = True  # Sphinx 7+ 默认开启，显式声明更稳妥
 
+project = "yumKing的笔记本"
+author = "yumKing"
 
 # ===== 核心配置 =====
 extensions = [
@@ -27,6 +29,6 @@ myst_heading_anchors = 3  # 为 H1~H3 自动生成锚点链接
 
 # 可选：定义全局替换变量（在 .md 中用 {{ variable }} 引用）
 myst_substitutions = {
-    "project": "MyProject",
+    "project": project,
     "version": "1.0.0",
 }
