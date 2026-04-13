@@ -10,6 +10,7 @@ extensions = [
     'myst_parser',          # 👈 启用 Markdown 支持
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
+    'sphinx_design',  # 👈 启用现代 UI 组件
     # ... 其他扩展
 ]
 
@@ -32,3 +33,18 @@ myst_substitutions = {
     "project": project,
     "version": "1.0.0",
 }
+
+# 主题配置
+html_theme = 'furo'
+html_theme_options = {
+    'light_logo': 'logo-light.png',  # 可选
+    'dark_logo': 'logo-dark.png',    # 可选
+    'sidebar_hide_name': False,      # 显示项目名
+    'footer_icons': [                # 底部社交图标
+        {'name': 'GitHub', 'url': 'https://github.com/yumKing', 'html': '', 'class': 'fa-brands fa-github'},
+    ],
+}
+
+# 静态资源路径（放自定义 CSS/图片）
+html_static_path = ['_static']
+html_css_files = ['custom.css']  # 可选

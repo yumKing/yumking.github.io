@@ -1,0 +1,15 @@
+/* 增大首屏标题与按钮间距 */
+.bd-article h1 {
+    margin-bottom: 0.5rem;
+}
+.bd-article p.lead {
+    font-size: 1.25rem;
+    color: var(--color-foreground-secondary);
+    margin-bottom: 2rem;
+}
+
+/* 自定义主题色（Furo 支持 CSS 变量） */
+:root {
+    --color-brand-primary: #2563eb; /* 科技蓝 */
+    --color-brand-content: #2563eb;
+}
