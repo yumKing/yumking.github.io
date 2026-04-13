@@ -1,3 +1,5 @@
+# java编辑及测试
+
 1、清理项目，重新构建
 mvn -pl xxxx-web -am clean compile -P '!consul-dc'
 mvn -pl xxxx-web -am compile -P '!consul-dc'

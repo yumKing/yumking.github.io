@@ -1,3 +1,5 @@
+# pg相关操作
+
 1、初始化
 initdb.exe -D D:\local\state\pgdata11 --auth=trust
 

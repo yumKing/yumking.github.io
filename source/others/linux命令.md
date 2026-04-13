@@ -1,3 +1,5 @@
+# linux命令
+
 #### 日志查询
 ```bash
 find /logs/ -name "*.out" -type f -newermt '2025-06-26 18:30:00' ! -newermt '2025-06-27 00:00:00' -exec ls -al {} \;
