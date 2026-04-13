@@ -50,4 +50,6 @@ html_theme_options = {
 
 # 静态资源路径（放自定义 CSS/图片）
 html_static_path = ['_static']
-html_css_files = ['custom.css']  # 可选
+html_js_files = [ 'search-modal.js' ]
+html_css_files = ['custom.css', 'search-modal.css']  # 可选
+html_search_enabled = True
