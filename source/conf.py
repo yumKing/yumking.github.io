@@ -36,8 +36,8 @@ myst_substitutions = {
 
 # 主题配置
 html_theme = 'furo'
-html_logo = '_static/logo-light.svg'  # 默认 Logo
-html_favicon = '_static/favicon.svg'
+# html_logo = '_static/logo-light.svg'  # 默认 Logo
+html_favicon = '_static/logo-light.svg'
 
 html_theme_options = {
     'light_logo': 'logo-light.svg',  # 可选
