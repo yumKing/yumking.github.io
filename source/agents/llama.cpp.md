@@ -28,6 +28,35 @@ llama-server.exe -m  .\qwen2.5-3b-instruct-q4_k_m.gguf -jf .\schema.json --jinja
 llama-server.exe -m  .\qwen2.5-coder-3b-instruct-q5_k_m.gguf --jinja -jf .\schema.json --temp 0.7 --top-k 40 --top-p 0.9 -ngl 99 --ctx-size 4096 --batch-size 512 --ubatch-size 128 --repeat-penalty 1.1  --port 8054 -v  --log-file qwen.log
 ```
 
+## llama 视觉模型加载 
+```bash
+llama-cli -m Qwen2.5-VL-3B-Instruct-Q8_0.gguf --mmproj mmproj-Qwen2.5-VL-3B-Instruct-Q8_0.gguf  -p "Describe this image." --image ./car-1.jpg
+
+llama-server.exe -m  Qwen2.5-VL-3B-Instruct-Q8_0.gguf  --mmproj mmproj-Qwen2.5-VL-3B-Instruct-Q8_0.gguf --jinja --temp 0.7 --top-k 40 --top-p 0.9 -ngl 99 --ctx-size 4096 --batch-size 512 --ubatch-size 128 --repeat-penalty 1.1  --port 8054 
+```
+
+## llama-server 工作流程
+```text
+1. 你的请求
+   {"messages": [{"role":"user", "content": [
+      {"type":"image_url", "image_url":{"url":"image/jpeg;base64,..."}},
+      {"type":"text", "text":"这张图有什么？"}
+   ]}]}
+
+2. llama-server 接收并解析
+   ├─ 识别到 image_url → 解码为 numpy 图像数组
+   ├─ 送入内置的 Vision Encoder (ViT) → 输出图像特征图
+   ├─ 经过投影层 (MLP) → 转为视觉 token 序列 (e.g. 1024 个 token IDs)
+   └─ 读取 chat template，找到占位符 <|image_pad|>
+
+3. Token 替换与拼接
+   原始模板输出:  ...<|im_start|>user\n<|image_pad|>这张图有什么？<|im_end|>\n...
+   替换后序列:    ...<|im_start|>user\n[1024个视觉token ID]这张图有什么？<|im_end|>\n...
+
+4. 送入 LLM
+   拼接好的 input_ids + attention_mask → 前向推理 → 生成文本
+```
+
 ## python openai 格式api使用
 ```python
 

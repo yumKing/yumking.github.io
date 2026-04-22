@@ -47,18 +47,3 @@
 * {ref}`modindex`
 * {ref}`search`
 
-<!-- 
-  📌 隐藏的 toctree：Sphinx 构建左侧侧边栏导航必需。
-  设为 :hidden: 可避免页面正文重复显示列表，保持现代 UI 整洁。
--->
-```{toctree}
-:maxdepth: 2
-:caption: 目录
-:hidden:
-
-快速入门 <getting_started/index>
-用户指南 <user_guide/overview>
-验证测试 <verify_test/index>
-agent <agents/index>
-其它文档 <others/index>
-```
