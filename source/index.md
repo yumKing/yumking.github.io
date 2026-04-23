@@ -34,6 +34,11 @@
 智能体配置 · 工作流 · 扩展开发
 :::
 
+:::{grid-item-card} 🤖 ComfyUI 实践
+:link: comfyui/index
+ComfyUI · 文生图工作流 · 图生图工作流
+:::
+
 :::{grid-item-card} 🗃️ 其它文档
 :link: others/index
 归档资料 · 临时记录 · 参考资料
