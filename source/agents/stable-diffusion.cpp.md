@@ -83,3 +83,8 @@ ffmpeg -framerate 1/2 -i f1.jpg -framerate 1/1.5 -i f2.jpg -framerate 1/1.5 -i f
 |头发飘动|发丝轻微摆动|用 EbSynth 做光流插值
 |背景虚化|景深变化|生成时加 depth of field 提示词
 |环境音|翻书声/窗外鸟鸣|添加音效库素材
+
+
+> 如果图片高分辨率生成慢且模糊，可以先生成低分辨率图片，再使用python工具# 2. 用 Real-ESRGAN 放大 2 倍（免费开源）
+> pip install realesrgan
+> python -m realesrgan.cli -i base_512.png -o final_1024.png --scale 2 --face_enhance
