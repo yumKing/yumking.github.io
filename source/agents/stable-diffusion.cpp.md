@@ -16,6 +16,11 @@ https://github.com/leejet/stable-diffusion.cpp/wiki/How-to-Use-Z%E2%80%90Image-o
 # --clip-on-cpu  允许您在 CPU 上运行 Qwen-3 4B，从而能够处理更高精度的模型。
 # 更多命令行参数可在https://github.com/leejet/stable-diffusion.cpp/tree/master/examples/cli找到。
 
-sd-cli.exe --diffusion-model  z_image_turbo-Q3_K.gguf --vae ae.safetensors  --llm Qwen3-4B-Instruct-2507-Q4_K_M.gguf -p "A cinematic, melancholic photograph of a solitary hooded figure walking through a sprawling, rain-slicked metropolis at night. The city lights are a chaotic blur of neon orange and cool blue, reflecting on the wet asphalt. The scene evokes a sense of being a single component in a vast machine. Superimposed over the image in a sleek, modern, slightly glitched font is the philosophical quote: 'THE CITY IS A CIRCUIT BOARD, AND I AM A BROKEN TRANSISTOR.' -- moody, atmospheric, profound, dark academic" --cfg-scale 1.0 -v --offload-to-cpu --diffusion-fa -H 1024 -W 512
+sd-cli.exe --diffusion-model  z_image_turbo-Q3_K.gguf --vae ae.safetensors  --llm Qwen3-4B-Instruct-2507-Q4_K_M.gguf -p "A cinematic, melancholic photograph of a solitary hooded figure walking through a sprawling, rain-slicked metropolis at night. The city lights are a chaotic blur of neon orange and cool blue, reflecting on the wet asphalt. The scene evokes a sense of being a single component in a vast machine. Superimposed over the image in a sleek, modern, slightly glitched font is the philosophical quote: 'THE CITY IS A CIRCUIT BOARD, AND I AM A BROKEN TRANSISTOR.' -- moody, atmospheric, profound, dark academic" --cfg-scale 1.0 -v --offload-to-cpu --diffusion-fa --vae-tiling -H 1024 -W 512 -steps 8
 
+```
+
+## sd-server使用
+```bash
+sd-server.exe --diffusion-model  z_image_turbo_bf16.safetensors --vae ae.sft  --llm qwen_3_4b.safetensors --diffusion-fa --offload-to-cpu --vae-tiling -v --cfg-scale 1.0
 ```
