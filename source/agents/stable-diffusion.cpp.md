@@ -71,9 +71,157 @@ ffmpeg -i frame2.png -vf "scale=1920:1080" f2.jpg
 ffmpeg -i frame3.png -vf "scale=1920:1080" f3.jpg
 
 # 2. 合成视频（帧 1 停 2 秒，帧 2 停 1.5 秒，帧 3 停 1.5 秒）
-ffmpeg -framerate 1/2 -i f1.jpg -framerate 1/1.5 -i f2.jpg -framerate 1/1.5 -i f3.jpg \
+ffmpeg -loop 1 -t 2 -i f1.jpg -loop 1 -t 1.5 -i f2.jpg -loop 1 -t 1.5 -i f3.jpg \
   -filter_complex "[0:v][1:v][2:v]concat=n=3:v=1:a=0[outv]" \
   -map "[outv]" -c:v libx264 -pix_fmt yuv420p output.mp4
+
+
+# 分段合成
+# 第 1 段：2 秒，淡入 0.5s + 淡出 0.5s
+ffmpeg -y -loop 1 -i 1.png -t 2 \
+  -vf "fade=t=in:st=0:d=0.5,fade=t=out:st=1.5:d=0.5" \
+  -c:v libx264 -pix_fmt yuv420p v1.mp4
+
+# 第 2 段：1.5 秒，淡入 0.3s + 淡出 0.3s
+ffmpeg -y -loop 1 -i 2.png -t 1.5 \
+  -vf "fade=t=in:st=0:d=0.3,fade=t=out:st=1.2:d=0.3" \
+  -c:v libx264 -pix_fmt yuv420p v2.mp4
+
+# 第 3 段：1.5 秒，淡入 0.3s + 淡出 0.5s
+ffmpeg -y -loop 1 -i 3.png -t 1.5 \
+  -vf "fade=t=in:st=0:d=0.3,fade=t=out:st=1.2:d=0.5" \
+  -c:v libx264 -pix_fmt yuv420p v3.mp4
+
+# 合并
+ffmpeg -y -f concat -safe 0 -i list.txt -c copy output.mp4
+
+## 缩放
+ffmpeg.exe -i .\output5.mp4 -vf "scale=256:256:force_original_aspect_ratio=decrease[a]; [a]pad=256:256:0:0:black"  output6.mp4
+
+## 画中画 output5.mp4(512x512) output6.mp4(256x256)
+ffmpeg.exe -i .\output5.mp4 -i .\output6.mp4 -filter_complex "[0:v][1:v]overlay=246:246[outv]" -map "[outv]" -c:v libx264 -pix_fmt yuv420p output7.mp4
+
+## 淡入淡出效果
+ffmpeg.exe -loop 1 -t 2 -i .\1.png -loop 1 -t 1.5 -i .\2.png -loop 1 -t 1.5 -i .\3.png -filter_complex "[0:v]fade=t=in:st=0:d=0.5,fade=t=out:st=1.5:d=0.5[a];[a][1:v][2:v]concat=n=3:v=1:a=0[outv]" -map "[outv]" -c:v libx264 -pix_fmt yuv420p output2.mp4
+
+## 交叉溶解（Crossfade）- 最常用， 从 前段 到 后段的转场
+ffmpeg.exe -loop 1 -t 2 -i .\1.png -loop 1 -t 1.5 -i .\2.png -loop 1 -t 1.5 -i .\3.png -filter_complex "[0:v][1:v]xfade=transition=fade:duration=0.3:offset=1.7[a];[a][2:v]xfade=transition=fade:duration=0.3:offset=3.2[outv]" -map "[outv]" -c:v libx264 -pix_fmt yuv420p output4.mp4
+### transition 转场类型
+#### fade 交叉淡入淡出 
+#### wipeleft	从左向右擦除
+#### wiperight	从右向左擦除
+#### wipeup	从下向上擦除
+#### wipedown	从上向下擦除
+#### slideleft	左滑入
+#### slideright	右滑入
+#### slideup	上滑入
+#### slidedown	下滑入
+#### circlecrop	圆形展开
+#### rectcrop	矩形展开
+#### distance	3D 距离过渡
+#### fadeblack	黑场过渡
+#### fadewhite	白场过渡
+#### radial	径向展开
+#### smoothleft	平滑左滑
+#### smoothright	平滑右滑
+
+### duration 转场时长
+### offset 转场开时时间 前段时长 - 转场时长
+
+## 常用视频滤镜
+### 画质增强
+# 锐化
+-vf "unsharp=5:5:1.0:5:5:0.0"
+
+# 降噪
+-vf "hqdn3d=1.5:1.5:6:6"
+
+# 对比度/亮度/饱和度
+-vf "eq=contrast=1.2:brightness=0.05:saturation=1.1"
+
+# 模糊（背景虚化效果）
+-vf "boxblur=10:1"
+
+# 边缘检测
+-vf "edgedetect=mode=canny"
+
+### 画面调整
+# 缩放（保持比例）
+-vf "scale=1920:1080:force_original_aspect_ratio=decrease"
+
+# 裁剪
+-vf "crop=800:600:100:100"  # 宽：高：x 偏移：y 偏移
+
+# 旋转
+-vf "transpose=1"  # 90° 顺时针
+-vf "transpose=2"  # 180°
+-vf "transpose=3"  # 90° 逆时针
+
+# 翻转
+-vf "hflip"  # 水平翻转
+-vf "vflip"  # 垂直翻转
+
+# 添加边框
+-vf "pad=1920:1080:0:0:black"
+
+### 特效滤镜
+# 老电影效果
+-vf "curves=vintage,fps=24"
+
+# 黑白
+-vf "hue=s=0"
+
+# 反色
+-vf "negate"
+
+# 像素化
+-vf "scale=iw/10:ih/10,scale=iw*10:ih*10:flags=neighbor"
+
+# 镜像
+-vf "split[main][tmp];[tmp]hflip[mirror];[main][mirror]overlay=0:0"
+
+# 画中画
+-vf "[main][pip]overlay=1600:800"
+
+### 动态效果
+# 缓慢缩放（Ken Burns 效果）
+-vf "zoompan=z='min(zoom+0.0015,1.5)':d=900:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1920x1080"
+
+# 抖动效果
+-vf "crop=iw-20:ih-20:20*sin(5*PI*t)+20:20*sin(3*PI*t)+20"
+
+# 波浪扭曲
+-vf "waves=w=0.02:h=0.01:y=0.5:x=0"
+
+# 渐变淡入（替代 fade）
+-vf "fade=t=in:st=0:d=1:alpha=1"
+
+### 音频效果（如有配音/背景音乐）
+# 淡入淡出
+-af "afade=t=in:st=0:d=1,afade=t=out:st=4:d=1"
+
+# 音量调整
+-af "volume=1.5"
+
+# 降噪
+-af "afftdn=nf=-20"
+
+# 均衡器
+-af "equalizer=f=1000:width_type=h:width=100:g=5"
+
+# 混响
+-af "aecho=0.8:0.9:1000:0.3"
+
+
+输入 → 缩放/裁剪 → 色彩调整 → 特效 → 转场 → 淡入淡出 → 编码输出
+       ↓          ↓          ↓      ↓        ↓
+     scale      eq       unsharp  xfade    fade
+
+原则：
+- 先调整分辨率（减少后续计算量）
+- 再调整色彩/画质
+- 最后加转场/淡入淡出
+- 滤镜顺序用逗号, 分隔，多个滤镜链用分号; 分隔
 ```
 
 |技巧|效果|实现方式
@@ -88,3 +236,4 @@ ffmpeg -framerate 1/2 -i f1.jpg -framerate 1/1.5 -i f2.jpg -framerate 1/1.5 -i f
 > 如果图片高分辨率生成慢且模糊，可以先生成低分辨率图片，再使用python工具# 2. 用 Real-ESRGAN 放大 2 倍（免费开源）
 > pip install realesrgan
 > python -m realesrgan.cli -i base_512.png -o final_1024.png --scale 2 --face_enhance
+

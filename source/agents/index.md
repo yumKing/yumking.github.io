@@ -9,4 +9,7 @@ claude-code使用 <claude-code>
 ollama配置 <ollama>
 llama.cpp使用 <llama.cpp>
 superpowers使用 <superpowers>
+stable-diffusion.cpp <stable-diffusion.cpp>
+视频生成流程 <视频生成流程>
+
 ```
