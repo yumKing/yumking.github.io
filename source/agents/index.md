@@ -11,5 +11,6 @@ llama.cpp使用 <llama.cpp>
 superpowers使用 <superpowers>
 stable-diffusion.cpp <stable-diffusion.cpp>
 视频生成流程 <视频生成流程>
+web工程各阶段分析 <web工程各阶段分析>
 
 ```
