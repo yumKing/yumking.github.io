@@ -205,3 +205,31 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
+
+
+## 核心集成拓扑（数据流向）中的各步骤分解实现
+### 飞书 ──Hook/MCP──▶ 需求插件群 ──▶ 飞书任务/PRD
+#### 整体数据流
+```plain
+飞书事件(Hook) 
+   ↓ (会议结束/文档更新/多维表变更)
+Sanic Webhook接收 → 验签/解密 → 路由分发
+   ↓
+MCP Server 读取飞书上下文(只读/限权)
+   ↓ (文档内容/录音转写/历史需求/业务词典)
+需求插件群(Skill+规则引擎) 
+   ↓ (去重/归类/优先级/AC草案 → 输出标准JSON)
+飞书API回写 
+   ↓ (创建任务/更新PRD/同步多维表)
+飞书机器人通知结果
+```
+#### 步骤1：飞书应用与权限配置
+
+
+### Figma/蓝湖 ──Hook──▶ UI插件群 ──MCP(Token/GitLab)──▶ Vue组件骨架
+
+### Pydantic/FastAPI ──Hook──▶ 系统/架构插件群 ──MCP(GitLab/监控/依赖)──▶ OpenAPI/ADR/安全报告
+
+### IDE(VSCode/PyCharm) ──Hook──▶ 编码插件群 ──MCP(私有包/类型提示/历史MR)──▶ PR提交
+
+### GitLab CI ──Hook──▶ 测试插件群 ──MCP(契约/缺陷库/环境)──▶ 飞书测试报告/阻断通知

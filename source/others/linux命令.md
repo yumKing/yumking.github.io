@@ -45,6 +45,15 @@ kubectl scale --current-replicas=[query_current_replicas] --replicas=[num] deplo
 
 # 重启deployment
 kubectl rollout restart deployment [deploymentName] -n [namespace]
+
+# 回滚到上一个版本
+kubectl rollout undo deployment/<资源名称>
+# 回滚到指定版本
+kubectl rollout undo deployment/<资源名称> --to-revision=<版本号>
+# 查看历史版本
+kubectl rollout history deployment/<资源名称>
+# 查看回滚状态
+kubectl rollout status deployment/<资源名称>
 ```
 
 
